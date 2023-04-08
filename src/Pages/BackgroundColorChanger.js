@@ -1,14 +1,13 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-function BackgroundColorChanger() {
-  const { colorname } = useParams();
 
-  return (
-    <main style={{ height: "100vh", backgroundColor: colorname }}>
-      <p>Background Color Changer</p>
-    </main>
-  );
+export const BackgroundColorChanger = () => {
+    let { colorname } = useParams();
+    console.log(colorname);
+    return (
+        <main style={{ height: "100vh", backgroundColor: `${colorname}` }}>
+            Background Color Changer
+        </main>
+    )
 }
-
-export default BackgroundColorChanger;
