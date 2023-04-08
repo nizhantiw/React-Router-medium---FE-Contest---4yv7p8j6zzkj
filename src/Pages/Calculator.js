@@ -1,38 +1,42 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 
-function Calculator() {
-  const { search } = useLocation();
-  const { num1, num2, op } = Object.fromEntries(
-    new URLSearchParams(search)
-  );
 
-  const calculate = () => {
-    const n1 = Number(num1);
-    const n2 = Number(num2);
+export const Calculator = () => {
+    let url_string = window.location.href;
+    var url = new URL(url_string);
+    var num1 = Number(url.searchParams.get("num1"))
+    var num2 = Number(url.searchParams.get("num2"))
+    var op = url.searchParams.get("op")
+    console.log(num1.num2, op)
+    let ans = 0;
 
     switch (op) {
-      case "+":
-        return n1 + n2;
-      case "-":
-        return n1 - n2;
-      case "*":
-        return n1 * n2;
-      case "/":
-        return n1 / n2;
-      case "%":
-        return n1 % n2;
-      default:
-        return NaN;
+        case "+": {
+            ans = num1 + num2;
+            break;
+        }
+        case "/": {
+            ans = num1 / num2;
+            break;
+        }
+        case "-": {
+            ans = num1 - num2;
+            break;
+        }
+        case "*": {
+            ans = num1 * num2;
+            break;
+        }
+        case "%": {
+            ans = num1 % num2;
+            break;
+        }
     }
-  };
+    return (
+        <div>
 
-  return (
-    <div>
-      <p>Your calculation result is:</p>
-      <span id="calc-result">{calculate()}</span>
-    </div>
-  );
+            Your calculation Result is <span id="calc-result">{ans}</span>
+
+        </div>
+    )
 }
-
-export default Calculator;
